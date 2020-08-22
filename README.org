@@ -17,6 +17,8 @@
 * Description
 # A summary of what this module does.
 
+[[./docs/sprint0/imgs/layout.png]]
+
 + SpaceFood is your answer to "What do we have to eat tonight, honey ?". Say
   goodbye to *hangry* and say hello to the *future*.
 + Notable features include :

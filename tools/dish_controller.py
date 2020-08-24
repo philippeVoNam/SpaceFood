@@ -9,6 +9,7 @@ import shutil
 from pathlib import Path
 # User Imports
 from resources.global_file_paths import dishesFolderPath
+from elements.dish import Dish
 
 # * Code
 class DishController():
@@ -19,7 +20,7 @@ class DishController():
         """ init. """
         pass
 
-    def create(self, name, category, description, ingredients, calories, healthiness, dishImageFilePath):
+    def create(self, dish):
         """
         creates a dish by :
         - creating a directory for that dish inside the appropriate category (breakfast, lunch, dinner, etc.)
@@ -28,43 +29,63 @@ class DishController():
 
         Arguments
         ---------
-        name : str
-            name of the dish
-        category : str (breakfast, lunch, dinner, snacks) (enum from DishCategories)
-            category of dish
-        description : str
-            description of the dish
-        ingredients : [Ingredients]
-            list of ingredients (elements.ingredient)
-        calories : int
-            number of calories
-        healthiness : str (fattening, neutral, healthy) (enum from Healthiness)
-            healthiness of the dish
+        dish : elements.Dish
+            dish to be created
         """
         # Creating dir of dish
-        dishesFolderPathObj = Path(dishesFolderPath)
-        dishFolderPathObj = dishesFolderPathObj  / category / name
+        dishFolderPathObj = Path(dish.dishFolderPath)
 
         if not os.path.exists(dishFolderPathObj):
             os.makedirs(dishFolderPathObj)
 
             # Creating the data yaml file
-            dish = {
-                'name': name,
-                'category': category,
-                'description': description,
-                'ingredients': ingredients,
-                'calories': calories,
-                'healthiness': healthiness,
+            dishData = {
+                'name': dish.name,
+                'category': dish.category,
+                'description': dish.description,
+                'ingredients': dish.ingredients,
+                'calories': dish.calories,
+                'healthiness': dish.healthiness,
             }
 
             dishDataFilePath = dishFolderPathObj / "data.yaml"
             with open(dishDataFilePath, 'w') as file:
-                yaml.dump(dish, file)
+                yaml.dump(dishData, file)
 
             # Copy the image
             dishImageFilePathDest = dishFolderPathObj / "dish.jpg"
-            shutil.copyfile(dishImageFilePath, dishImageFilePathDest)
+            shutil.copyfile(dish.dishImageFilePath, dishImageFilePathDest)
 
         else:
-            print("dish " + name + " already exists !")
+            print("dish " + dish.name + " already exists !")
+
+    def read(self, dishFolderPath):
+        """
+        read the dish from folderPath and retrieve its information
+
+        Arguments
+        ---------
+        dishFolderPath : str
+            path to the folder of the dish
+        """
+        dishFilePathData = str(Path(dishFolderPath) / "data.yaml")
+
+        try:
+            with open(dishFilePathData) as file:
+                dishData = yaml.load(file, Loader = yaml.FullLoader)
+
+                name = dishData.name
+                category = dishData.category
+                description = dishData.description
+                ingredients = dishData.ingredients
+                calories = dishData.calories
+                healthiness = dishData.healthiness
+
+                dishImageFilePath = str(Path(dishesFolderPath) / "dish.jpg")
+
+                dish = Dish(name, category, description, ingredients, calories, healthiness, dishImageFilePath)
+
+                return dish
+
+        except Exception as e:
+            print(e)

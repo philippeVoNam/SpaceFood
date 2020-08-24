@@ -3,7 +3,9 @@
  
 # * Imports
 # 3rd Party Imports
+from pathlib import Path
 # User Imports
+from resources.global_file_paths import dishesFolderPath
 
 # * Code
 class Dish():
@@ -37,3 +39,5 @@ class Dish():
         self.calories = calories
         self.healthiness = healthiness
         self.dishImageFilePath = dishImageFilePath
+
+        self.dishFolderPath = str(Path(dishesFolderPath) / "dishes" / category)

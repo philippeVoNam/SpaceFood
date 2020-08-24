@@ -1,0 +1,10 @@
+calories: 100
+category: dinner
+description: awesome
+healthiness: fatenning
+ingredients:
+- ingredient: lobster
+  quantity: 1
+- ingredient: steak
+  quantity: 1
+name: surf-n-turf

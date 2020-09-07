@@ -35,6 +35,7 @@ class DishController():
         # Creating dir of dish
         dishFolderPathObj = Path(dish.dishFolderPath)
 
+
         if not os.path.exists(dishFolderPathObj):
             os.makedirs(dishFolderPathObj)
 
@@ -43,7 +44,7 @@ class DishController():
                 'name': dish.name,
                 'category': dish.category,
                 'description': dish.description,
-                'ingredients': dish.ingredients,
+                'components': dish.components,
                 'calories': dish.calories,
                 'healthiness': dish.healthiness,
             }
@@ -55,6 +56,8 @@ class DishController():
             # Copy the image
             dishImageFilePathDest = dishFolderPathObj / "dish.jpg"
             shutil.copyfile(dish.dishImageFilePath, dishImageFilePathDest)
+
+            print(str(dishFolderPathObj) + " created !")
 
         else:
             print("dish " + dish.name + " already exists !")
@@ -74,18 +77,35 @@ class DishController():
             with open(dishFilePathData) as file:
                 dishData = yaml.load(file, Loader = yaml.FullLoader)
 
-                name = dishData.name
-                category = dishData.category
-                description = dishData.description
-                ingredients = dishData.ingredients
-                calories = dishData.calories
-                healthiness = dishData.healthiness
+                name = dishData["name"]
+                category = dishData["category"]
+                description = dishData["description"]
+                components = dishData["components"]
+                calories = dishData["calories"]
+                healthiness = dishData["healthiness"]
 
                 dishImageFilePath = str(Path(dishesFolderPath) / "dish.jpg")
 
-                dish = Dish(name, category, description, ingredients, calories, healthiness, dishImageFilePath)
+                dish = Dish(name, category, description, components, healthiness, dishImageFilePath)
 
                 return dish
 
         except Exception as e:
             print(e)
+
+    def remove(self, dishFolderPath):
+        """
+        remove the dish from data folder
+
+        Arguments
+        ---------
+        dishFolderPath : str
+            path to the dish
+        """
+        dishFolderPath = Path(dishFolderPath)
+
+        if os.path.exists(dishFolderPath):
+            os.rmdir(dishFolderPath)
+
+        else:
+            print(dishFolderPath + " does not exist !")

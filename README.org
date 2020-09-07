@@ -1,7 +1,7 @@
 #+TITLE:   SpaceFood
 #+DATE:    August 21, 2020
 #+SINCE:   {replace with next tagged release version}
-#+STARTUP: inlineimages nofold
+# #+STARTUP: inlineimages nofold
 
 * Table of Contents :TOC_3:noexport:
 - [[#description][Description]]

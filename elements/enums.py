@@ -21,3 +21,7 @@ class Healthiness(enum.Enum):
 class DishModes(enum.Enum):
     Editable = "editable"
     Show = "show"
+
+class SizeType(enum.Enum):
+    Unit = "unit"
+    Per100g = "per100g"

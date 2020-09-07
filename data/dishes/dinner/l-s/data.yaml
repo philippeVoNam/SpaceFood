@@ -1,0 +1,18 @@
+calories: 500.0
+category: dinner
+components:
+- - !!python/object:elements.ingredient.Ingredient
+    calories: 100
+    caloriesMultiplier: 100.0
+    name: steak
+    type_: unit
+  - 1
+- - !!python/object:elements.ingredient.Ingredient
+    calories: 200
+    caloriesMultiplier: 200.0
+    name: lobster
+    type_: unit
+  - 2
+description: amazing
+healthiness: fatenning
+name: l-s

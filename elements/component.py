@@ -28,3 +28,11 @@ class Component():
         data["quantity"] = quantityData
 
         return data
+
+    def calories_cal(self):
+        """
+        calculate the number of calories in the component
+        """
+        calories = self.ingredient.caloriesMultiplier * self.quantity
+
+        return calories

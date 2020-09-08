@@ -1,0 +1,48 @@
+- calories: 0
+  name: default
+  type_: unit
+- calories: 360
+  name: banh xeo batter mix
+  type_: per100g
+- calories: 230
+  name: coconut milk
+  type_: per100g
+- calories: 100
+  name: shrimp
+  type_: per100g
+- calories: 32
+  name: green onion
+  type_: per100g
+- calories: 518
+  name: pork belly
+  type_: per100g
+- calories: 40
+  name: onion
+  type_: per100g
+- calories: 23
+  name: bean sprouts
+  type_: per100g
+- calories: 119
+  name: duck
+  type_: per100g
+- calories: 53
+  name: carrot-daikon
+  type_: per100g
+- calories: 85
+  name: wonton noodle
+  type_: per100g
+- calories: 163
+  name: char siu
+  type_: per100g
+- calories: 130
+  name: white rice
+  type_: per100g
+- calories: 191
+  name: shabu shabu
+  type_: per100g
+- calories: 548
+  name: bacon
+  type_: per100g
+- calories: 155
+  name: eggs
+  type_: per100g

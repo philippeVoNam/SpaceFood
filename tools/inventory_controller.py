@@ -6,6 +6,8 @@
 import yaml
 from pathlib import Path
 # User Imports
+from elements.ingredient import Ingredient
+from elements.component import Component
 
 # * Code
 class InventoryController():
@@ -84,3 +86,21 @@ class InventoryController():
 
         # append the edited ingredient
         self.append(editedComponent)
+
+    def load(self):
+        """
+        load all the components to see what we have
+        """
+        with open(self.filePath, 'r') as yamlfile:
+            loadedData = yaml.safe_load(yamlfile) # Note the safe_load
+
+            components = []
+            for component in loadedData:
+                ingredientCp = component["ingredient"]
+                ingredient = Ingredient(ingredientCp["name"], int(ingredientCp["calories"]), ingredientCp["type_"])
+                quantity = int(component["quantity"])
+
+                component = Component(ingredient, quantity)
+                components.append(component)
+
+            return components

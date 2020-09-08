@@ -1,0 +1,35 @@
+- ingredient:
+    calories: 0
+    name: default
+    type_: unit
+  quantity: 0
+- ingredient:
+    calories: 100
+    name: shrimp
+    type_: per100g
+  quantity: 400
+- ingredient:
+    calories: 518
+    name: pork belly
+    type_: per100g
+  quantity: 500
+- ingredient:
+    calories: 230
+    name: coconut milk
+    type_: per100g
+  quantity: 300
+- ingredient:
+    calories: 40
+    name: onion
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 119
+    name: duck
+    type_: per100g
+  quantity: 500
+- ingredient:
+    calories: 85
+    name: wonton noodle
+    type_: per100g
+  quantity: 400

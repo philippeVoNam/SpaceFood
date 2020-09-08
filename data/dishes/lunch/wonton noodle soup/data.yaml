@@ -1,0 +1,21 @@
+calories: 436.5
+category: lunch
+components:
+- ingredient:
+    calories: 100
+    name: shrimp
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 85
+    name: wonton noodle
+    type_: per100g
+  quantity: 300
+- ingredient:
+    calories: 163
+    name: char siu
+    type_: per100g
+  quantity: 50
+description: Wonton noodle soup is a soup that consists of broth and noodles and wontons.
+healthiness: neutral
+name: wonton noodle soup

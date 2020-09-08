@@ -1,33 +1,21 @@
-import yaml
-from elements.enums import SizeType
-from elements.ingredient import Ingredient
-from tools.ingredient_controller import IngredientController
-from elements.dish import Dish
 from tools.dish_controller import DishController
+from elements.dish import Dish
 from elements.enums import DishCategories, Healthiness
-from elements.component import Component
-from tools.inventory_controller import InventoryController
 
-controller = InventoryController("inventory.yaml")
+name = "l-s"
+category = DishCategories.Dinner.value
+description = "wonderful food"
+ingredients = ["lobster", "steak"]
+calories = 100
+healthiness = Healthiness.Fatenning.value
+dishImgPath = "img.jpg"
 
-steak = Ingredient("steak",100, SizeType.Unit.value)
-lobster = Ingredient("lobster",200, SizeType.Unit.value)
+dish = Dish(name, category, description, ingredients, calories, healthiness, dishImgPath)
 
-steakCp = Component(steak, 2)
-lobsterCp = Component(lobster, 3)
+dishControl = DishController()
 
-controller.append(steakCp)
-controller.append(lobsterCp)
+dishControl.create(dish)
 
-lobsterCp = Component(lobster, 5)
+dish1 = dishControl.read("data/dishes/dinner/surf-n-turf")
 
-controller.remove("steak")
-controller.edit(lobsterCp)
-
-# components = [[steak,1], [lobster, 2]]
-# dish = Dish("l-s", DishCategories.Dinner.value, "amazing", components, Healthiness.Fatenning.value, "img.jpg")
-
-# dishController = DishController()
-# # dishController.create(dish)
-# dish = dishController.read("data/dishes/dinner/l-s")
-# print(dish)
+print(dish1)

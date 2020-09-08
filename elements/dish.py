@@ -53,24 +53,32 @@ class Dish():
         """
         totalCalories = 0
         for component in components:
-            ingredient = component[0]
-            quantity = int(component[1])
-
-            calories = ingredient.caloriesMultiplier * quantity
-
+            calories = component.calories_cal()
             totalCalories = calories + totalCalories
 
         return totalCalories
 
+    def pickle_it(self):
+        """
+        transform obj to dict data
+        """
+        componentsData = []
+        for component in self.components:
+            data = component.pickle_it()
+
+            componentsData.append(data)
+
+        dishData = {
+            'name': self.name,
+            'category': self.category,
+            'description': self.description,
+            'components': componentsData,
+            'calories': self.calories,
+            'healthiness': self.healthiness
+        }
+
+        return dishData
 
     def __str__(self):
-        componentData = []
-        for component in self.components:
-            ingredient = component[0]
-            quantity = component[1]
-            componentBuild = [ingredient.pickle_it(), quantity]
-
-            componentData.append(componentBuild)
-
-        data = [self.name, self.category, self.description, componentData, self.calories, self.healthiness]
+        data = self.pickle_it()
         return str(data)

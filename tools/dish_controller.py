@@ -10,6 +10,8 @@ from pathlib import Path
 # User Imports
 from resources.global_file_paths import dishesFolderPath
 from elements.dish import Dish
+from elements.ingredient import Ingredient
+from elements.component import Component
 
 # * Code
 class DishController():
@@ -40,14 +42,7 @@ class DishController():
             os.makedirs(dishFolderPathObj)
 
             # Creating the data yaml file
-            dishData = {
-                'name': dish.name,
-                'category': dish.category,
-                'description': dish.description,
-                'components': dish.components,
-                'calories': dish.calories,
-                'healthiness': dish.healthiness,
-            }
+            dishData = dish.pickle_it()
 
             dishDataFilePath = dishFolderPathObj / "data.yaml"
             with open(dishDataFilePath, 'w') as file:
@@ -80,7 +75,17 @@ class DishController():
                 name = dishData["name"]
                 category = dishData["category"]
                 description = dishData["description"]
-                components = dishData["components"]
+
+                componentsData = dishData["components"]
+                components = []
+                for component in componentsData:
+                    ingredientCp = component["ingredient"]
+                    ingredient = Ingredient(ingredientCp["name"], int(ingredientCp["calories"]), ingredientCp["type_"])
+                    quantity = int(component["quantity"])
+
+                    component = Component(ingredient, quantity)
+                    components.append(component)
+
                 calories = dishData["calories"]
                 healthiness = dishData["healthiness"]
 

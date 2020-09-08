@@ -1,0 +1,29 @@
+calories: 1769.0
+category: lunch
+components:
+- ingredient:
+    calories: 100
+    name: shrimp
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 518
+    name: pork belly
+    type_: per100g
+  quantity: 300
+- ingredient:
+    calories: 230
+    name: coconut milk
+    type_: per100g
+  quantity: 50
+description: 'Banh xeo is a crispy, stuffed rice pancake popular in Vietnam.
+
+  Banh mean cake while xeo means sizzle. The name refers to the
+
+  loud sound the rice batter makes when it is poured into the hot
+
+  skillet. It is a savoury fried pancake made of rice flour, water,
+
+  and turmeric powder.'
+healthiness: fatenning
+name: ban xeo

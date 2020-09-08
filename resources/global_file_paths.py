@@ -1,3 +1,5 @@
 dataFolderPath = "data"
 dishesFolderPath = "data/dishes"
 iconsFolderPath = "resources/icons"
+ingredientBankFilePath = "data/ingredients_bank.yaml"
+inventoryFilePath = "data/inventory.yaml"

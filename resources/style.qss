@@ -8,6 +8,8 @@ QPushButton
     font-family:dogicapixel;
     font-size: 12px;
     min-height: 24px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 QPushButton:hover:!pressed
 {
@@ -103,4 +105,16 @@ QListWidget
 QListWidget:item
 {
     margin: 8px;
+}
+
+/* QSpinBox */
+/* ------------*/
+QSpinBox
+{
+    border-radius: 2px;
+    background: #5352ed;
+    color: white;
+    font-family:dogicapixel;
+    font-size: 12px;
+    height: 25px
 }

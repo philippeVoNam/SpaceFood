@@ -7,10 +7,6 @@
 from PySide2 import QtWidgets
 from PySide2 import QtGui
 # User Imports
-from ui.grid_images_view import GridImagesView
-from ui.image_button import ImageButton
-from ui.dish_view import DishView, AddDishView
-
 from elements.dish import Dish
 from elements.enums import DishCategories, Healthiness
 from custom_widgets.image_drag_drop import ImageDragDrop

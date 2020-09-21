@@ -5,8 +5,10 @@
 # 3rd Party Imports
 import sys
 from PySide2 import QtWidgets
+from PySide2 import QtGui
 # User Imports
 from ui.mainwindow_view import MainWindow
+from ui.dish_create_view import DishCreateWindow
 
 # * Code
 if __name__ == '__main__':
@@ -14,9 +16,17 @@ if __name__ == '__main__':
     # Init App
     app = QtWidgets.QApplication(sys.argv)
 
+    # load font
+    fontDb = QtGui.QFontDatabase()
+    fontPixel = fontDb.addApplicationFont("resources/fonts/dogicapixel.ttf")
+
+    # load stylesheet
+    with open("resources/style.qss", "r") as f:
+        app.setStyleSheet(f.read())
+
     # Open MainWindow
-    mainWindow = MainWindow()
-    mainWindow.show()
+    dishCreateWindow = DishCreateWindow()
+    dishCreateWindow.show()
 
     # Exit
     sys.exit(app.exec_())

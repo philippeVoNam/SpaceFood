@@ -27,8 +27,12 @@ with open(ingredientsFilePath, "r") as csv_file:
         name = row[0]
         quantity = int(row[1])
 
-        ingredient = ingredientController.read(name)
+        try:
+            ingredient = ingredientController.read(name)
 
-        component = Component(ingredient, quantity)
+            component = Component(ingredient, quantity)
 
-        controller.append(component)
+            controller.append(component)
+
+        except:
+            print("error occured")

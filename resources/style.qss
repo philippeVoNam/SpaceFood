@@ -1,0 +1,106 @@
+/* QPushButton */
+/* ------------*/
+QPushButton
+{
+    background-color: #5352ed;
+    border-radius: 0px;
+    color: white;
+    font-family:dogicapixel;
+    font-size: 12px;
+    min-height: 24px;
+}
+QPushButton:hover:!pressed
+{
+    background-color: #70a1ff;
+}
+QPushButton:pressed
+{
+    background-color: #95b8fc;
+}
+
+/* QComboBox */
+/* ------------*/
+QComboBox
+{
+    background: #5352ed;
+    border-radius: 2px;
+    color: white;
+    font-family:dogicapixel;
+    font-size: 12px;
+    height: 25px;
+    selection-background-color: #2ed573;
+}
+QComboBox::drop-down
+{
+    border: 0px; /* This seems to replace the whole arrow of the combo box */
+    padding-right: 12px;
+}
+QComboBox::down-arrow
+{
+    image: url(resources/icons/down-arrow.png);
+    width: 14px;
+    height: 14px;
+}
+QComboBox QAbstractItemView {
+    background: #5352ed;
+    border-radius: 2px;
+}
+
+/* QLineEdit */
+/* ------------*/
+QLineEdit
+{
+    background-color: #f1f2f6;
+    border-radius: 2px;
+    color: black;
+    font-family:dogicapixel;
+    font-size: 12px;
+    height: 25px
+}
+
+/* QMainWindow */
+/* ------------*/
+QMainWindow
+{
+    border-radius: 10px;
+    background-color: #1C1E26;
+}
+
+/* QLabel */
+/* ------------*/
+QLabel
+{
+    border-radius: 0px;
+    color: white;
+    font-family:dogicapixel;
+    font-size: 12px;
+    qproperty-alignment: AlignCenter;
+}
+
+/* QPlainTextEdit */
+/* ------------*/
+QPlainTextEdit
+{
+    background-color: #ced6e0;
+    border-radius: 5px;
+    color: #2f3542;
+    font-family:dogicapixel;
+    font-size: 12px;
+    height: 25px
+}
+
+/* QListWidget */
+/* ------------*/
+QListWidget
+{
+    background-color: #5352ed;
+    border-radius: 2px;
+    color: white;
+    font-family:dogicapixel;
+    font-size: 10px;
+    padding: 10px;
+}
+QListWidget:item
+{
+    margin: 8px;
+}

@@ -1,0 +1,21 @@
+calories: 11.2
+category: breakfast
+components:
+- ingredient:
+    calories: 360
+    name: banh xeo batter mix
+    type_: per100g
+  quantity: 1
+- ingredient:
+    calories: 230
+    name: coconut milk
+    type_: per100g
+  quantity: 2
+- ingredient:
+    calories: 100
+    name: shrimp
+    type_: per100g
+  quantity: 3
+description: asd
+healthiness: healthy
+name: asd

@@ -1,0 +1,21 @@
+calories: 755.5
+category: dinner
+components:
+- ingredient:
+    calories: 32
+    name: green onion
+    type_: per100g
+  quantity: 50
+- ingredient:
+    calories: 85
+    name: wonton noodle
+    type_: per100g
+  quantity: 450
+- ingredient:
+    calories: 119
+    name: duck
+    type_: per100g
+  quantity: 300
+description: Wonton noodles is a Cantonese noodle dish.
+healthiness: neutral
+name: Wonton Noodle Soup

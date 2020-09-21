@@ -104,3 +104,20 @@ class InventoryController():
                 components.append(component)
 
             return components
+
+    def load_from_text(self, text):
+        """
+        load all the components to see what we have from raw text
+        """
+        data = text.splitlines()
+        print(data)
+        # components = []
+        # for component in loadedData:
+        #     ingredientCp = component["ingredient"]
+        #     ingredient = Ingredient(ingredientCp["name"], int(ingredientCp["calories"]), ingredientCp["type_"])
+        #     quantity = int(component["quantity"])
+
+        #     component = Component(ingredient, quantity)
+        #     components.append(component)
+
+        # return components

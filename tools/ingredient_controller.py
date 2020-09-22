@@ -35,15 +35,20 @@ class IngredientController():
 
             data = ingredient.pickle_it() # turn ingredient to a dict representation
 
+            resultFlag = False
             if data["name"].lower() not in ingredientsNames:
                 loadedData.append(data)
+                resultFlag = True
 
             else:
                 print("ingredient already in")
+                resultFlag = False
 
         if loadedData:
             with open(self.filePath,'w') as yamlfile:
                 yaml.safe_dump(loadedData, yamlfile) # Also note the safe_dump
+
+        return resultFlag
 
     def remove(self, ingredientName):
         """

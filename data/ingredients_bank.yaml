@@ -46,3 +46,15 @@
 - calories: 155
   name: eggs
   type_: per100g
+- calories: 47
+  name: orange
+  type_: per100g
+- calories: 33
+  name: strawberry
+  type_: per100g
+- calories: 52
+  name: apple
+  type_: per100g
+- calories: 206
+  name: fish
+  type_: per100g

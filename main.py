@@ -9,7 +9,6 @@ from PySide2 import QtGui
 # User Imports
 from ui.mainwindow_view import MainWindow
 from ui.dish_create_view import DishCreateWindow
-from ui.ingredients_view import IngredientAddWidget
 
 # * Code
 if __name__ == '__main__':
@@ -26,10 +25,8 @@ if __name__ == '__main__':
         app.setStyleSheet(f.read())
 
     # Open MainWindow
-    # dishCreateWindow = DishCreateWindow()
-    # dishCreateWindow.show()
-    ingredientAddWidget = IngredientAddWidget()
-    ingredientAddWidget.show()
+    dishCreateWindow = DishCreateWindow()
+    dishCreateWindow.show()
 
     # Exit
     sys.exit(app.exec_())

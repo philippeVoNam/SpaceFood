@@ -16,6 +16,7 @@ from resources.global_file_paths import ingredientBankFilePath
 from elements.ingredient import Ingredient
 from elements.component import Component
 from tools.dish_controller import DishController
+from ui.ingredients_view import IngredientAddWidget
 
 # * Code
 class DishCreateWindow(QtWidgets.QMainWindow):
@@ -56,19 +57,30 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         self.componentInputTextBox = QtWidgets.QPlainTextEdit()
         self.ingredientList.list_.itemClicked.connect(self.ingredient_clicked)
 
+        self.refreshButton = QtWidgets.QPushButton("Refresh")
+        self.ingredientList.layout.addWidget(self.refreshButton)
+        self.refreshButton.clicked.connect(self.refresh_ingredients_bank)
+
+        self.ingredientAddWidget = IngredientAddWidget()
+
         self.imageDragDrop = ImageDragDrop()
 
         self.createDishButton = QtWidgets.QPushButton("Create Dish")
         self.createDishButton.clicked.connect(self.create_dish)
 
+        self.statusBar = QtWidgets.QStatusBar()
+        self.setStatusBar(self.statusBar)
+        self.statusBar.setObjectName("statusDish")
+
         self.layout.addWidget(self.dishNameLineEdit, 0, 0, 1, 2)
         self.layout.addWidget(self.categoryComboBox, 1, 0, 1, 2)
         self.layout.addWidget(self.healthComboBox, 2, 0, 1, 2)
         self.layout.addWidget(self.descriptionTextBox, 3, 0, 1, 2)
-        self.layout.addWidget(self.ingredientList, 4, 0)
-        self.layout.addWidget(self.componentInputTextBox, 4, 1)
-        self.layout.addWidget(self.imageDragDrop, 5, 0, 1, 2)
-        self.layout.addWidget(self.createDishButton, 6, 0, 1, 2)
+        self.layout.addWidget(self.ingredientAddWidget, 4, 0, 1, 2)
+        self.layout.addWidget(self.ingredientList, 5, 0)
+        self.layout.addWidget(self.componentInputTextBox, 5, 1)
+        self.layout.addWidget(self.imageDragDrop, 6, 0, 1, 2)
+        self.layout.addWidget(self.createDishButton, 7, 0, 1, 2)
 
         # Apply Layout
         self.setCentralWidget(QtWidgets.QWidget(self))
@@ -78,7 +90,7 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         """
         insert ingredient into component text box
         """
-        self.componentInputTextBox.appendPlainText(item.text())
+        self.componentInputTextBox.appendPlainText(item.text() + ", " + "\n")
 
     def create_dish(self):
 
@@ -104,21 +116,41 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         # verify the data
         if not name or not category or not healthiness or not description or len(components) == 0:
             print("invalid dish")
+            self.set_red_status()
+            self.statusBar.showMessage("invalid dish (ó_ò｡)", 10000)
 
         else:
             # create dish
             dish = Dish(name, category, description.strip(), components, healthiness, dishImgFilePath)
             controllerDish = DishController()
-            controllerDish.create(dish)
+            result = controllerDish.create(dish)
+
+            if result:
+                self.set_green_status()
+                print("dish added")
+                self.statusBar.showMessage("dish added o(^▽^)o", 10000)
+
+            else:
+                self.set_yellow_status()
+                print("dish already exists")
+                self.statusBar.showMessage("dish already exists (^o^)v", 10000)
+
    
     def load_from_text(self, text):
         """
         load all the components to see what we have from raw text
         """
+        # text = text.strip()
         data = text.splitlines()
 
+        # clean the data -> since we add a newline for line spacing purposes
+        dataCleaned = []
+        for item in data:
+            if item != "":
+                dataCleaned.append(item)
+
         components = []
-        for componentData in data:
+        for componentData in dataCleaned:
             componentData = componentData.split(",")
             ingredientName = componentData[0]
             ingredient = self.ingredientController.read(ingredientName)
@@ -128,3 +160,49 @@ class DishCreateWindow(QtWidgets.QMainWindow):
             components.append(component)
 
         return components
+
+    def refresh_ingredients_bank(self):
+        ingredientList = self.ingredientController.get_names()
+        self.ingredientList.set_items(ingredientList)
+
+    def set_red_status(self):
+        """
+        set the label to red text
+        """
+        style = """
+        QStatusBar#statusDish {
+            color: #ff6b81;
+            font-family:dogicapixel;
+            font-size: 12px;
+            font: bold;
+        }
+        """
+        self.statusBar.setStyleSheet(style)
+
+    def set_green_status(self):
+        """
+        set the label to red text
+        """
+        style = """
+        QStatusBar#statusDish {
+            color: #7bed9f;
+            font-family:dogicapixel;
+            font-size: 12px;
+            font: bold;
+        }
+        """
+        self.statusBar.setStyleSheet(style)
+
+    def set_yellow_status(self):
+        """
+        set the label to red text
+        """
+        style = """
+        QStatusBar#statusDish {
+            color: #eccc68;
+            font-family:dogicapixel;
+            font-size: 12px;
+            font: bold;
+        }
+        """
+        self.statusBar.setStyleSheet(style)

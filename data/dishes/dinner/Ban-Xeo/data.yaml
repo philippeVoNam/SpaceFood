@@ -1,0 +1,31 @@
+calories: 5738.4
+category: dinner
+components:
+- ingredient:
+    calories: 360
+    name: banh xeo batter mix
+    type_: per100g
+  quantity: 340
+- ingredient:
+    calories: 518
+    name: pork belly
+    type_: per100g
+  quantity: 680
+- ingredient:
+    calories: 32
+    name: green onion
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 40
+    name: onion
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 230
+    name: coconut milk
+    type_: per100g
+  quantity: 400
+description: Vietnamese crepe that does a "xeoooo" when you cook it :)
+healthiness: fatenning
+name: Ban-Xeo

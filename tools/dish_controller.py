@@ -37,7 +37,7 @@ class DishController():
         # Creating dir of dish
         dishFolderPathObj = Path(dish.dishFolderPath)
 
-
+        resultFlag = False
         if not os.path.exists(dishFolderPathObj):
             os.makedirs(dishFolderPathObj)
 
@@ -53,9 +53,13 @@ class DishController():
             shutil.copyfile(dish.dishImageFilePath, dishImageFilePathDest)
 
             print(str(dishFolderPathObj) + " created !")
+            resultFlag = True
 
         else:
             print("dish " + dish.name + " already exists !")
+            resultFlag = False
+
+        return resultFlag
 
     def read(self, dishFolderPath):
         """

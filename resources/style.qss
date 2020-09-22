@@ -79,7 +79,7 @@ QLabel
     qproperty-alignment: AlignCenter;
 }
 
-/* QPlainTextEdit */
+/* QTextEdit */
 /* ------------*/
 QPlainTextEdit
 {
@@ -88,7 +88,7 @@ QPlainTextEdit
     color: #2f3542;
     font-family:dogicapixel;
     font-size: 12px;
-    height: 25px
+    height: 25px;
 }
 
 /* QListWidget */
@@ -117,4 +117,13 @@ QSpinBox
     font-family:dogicapixel;
     font-size: 12px;
     height: 25px
+}
+
+/* QStatusBar */
+/* ------------*/
+QStatusBar
+{
+    color: white;
+    font-family:dogicapixel;
+    font-size: 12px;
 }

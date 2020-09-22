@@ -19,16 +19,17 @@ class FilterList(QtWidgets.QWidget):
         super().__init__(*args, **kwargs)
 
         # setup ui
-        layout = QtWidgets.QVBoxLayout()
-        self.lineEdit = QtWidgets.QLineEdit()
+        self.layout = QtWidgets.QGridLayout()
+
         self.list_ = QtWidgets.QListWidget()
 
+        self.lineEdit = QtWidgets.QLineEdit()
         self.lineEdit.textChanged.connect(self.text_changed)
 
-        layout.addWidget(self.lineEdit)
-        layout.addWidget(self.list_)
+        self.layout.addWidget(self.lineEdit)
+        self.layout.addWidget(self.list_)
 
-        self.setLayout(layout)
+        self.setLayout(self.layout)
 
     def set_items(self, itemStrings):
         self.list_.addItems(itemStrings)

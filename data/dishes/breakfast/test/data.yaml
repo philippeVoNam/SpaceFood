@@ -16,6 +16,6 @@ components:
     name: shrimp
     type_: per100g
   quantity: 3
-description: asd
+description: test
 healthiness: healthy
-name: asd
+name: test

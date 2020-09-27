@@ -1,0 +1,27 @@
+calories: 433.76
+category: lunch
+components:
+- ingredient:
+    calories: 174
+    name: hard corn shell
+    type_: per100g
+  quantity: 84
+- ingredient:
+    calories: 332
+    name: ground beef
+    type_: per100g
+  quantity: 80
+- ingredient:
+    calories: 15
+    name: lettuce
+    type_: per100g
+  quantity: 40
+- ingredient:
+    calories: 40
+    name: onion
+    type_: per100g
+  quantity: 40
+description: Taco (american-style) consists of a hard shell stuffed with ground beef
+  + lettuce + onions and dipped in mayonaise sauce.
+healthiness: neutral
+name: Taco

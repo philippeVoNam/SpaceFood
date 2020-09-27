@@ -17,6 +17,8 @@ from elements.ingredient import Ingredient
 from elements.component import Component
 from tools.dish_controller import DishController
 from ui.ingredients_view import IngredientAddWidget
+from custom_widgets.img_button_widget import ImgButton
+from custom_widgets.grid_widget import GridList
 
 # * Code
 class DishCreateWindow(QtWidgets.QMainWindow):
@@ -52,6 +54,18 @@ class DishCreateWindow(QtWidgets.QMainWindow):
 
         self.descriptionTextBox = QtWidgets.QPlainTextEdit()
         self.descriptionTextBox.setPlaceholderText("enter a short description")
+        styleDescriptionBox = """
+            QPlainTextEdit
+            {
+                background-color: #ced6e0;
+                border-radius: 5px;
+                color: #2f3542;
+                font-family:dogicapixel;
+                font-size: 12px;
+                max-height: 100px;
+            }
+        """
+        self.descriptionTextBox.setStyleSheet(styleDescriptionBox)
 
         self.ingredientList = FilterList()
         self.componentInputTextBox = QtWidgets.QPlainTextEdit()
@@ -85,6 +99,9 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         # Apply Layout
         self.setCentralWidget(QtWidgets.QWidget(self))
         self.centralWidget().setLayout(self.layout)
+
+    def hi(self):
+        print("hi")
 
     def ingredient_clicked(self, item):
         """

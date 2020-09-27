@@ -7,8 +7,8 @@ import sys
 from PySide2 import QtWidgets
 from PySide2 import QtGui
 # User Imports
-from ui.mainwindow_view import MainWindow
 from ui.dish_create_view import DishCreateWindow
+from ui.butler_view import ButlerView
 
 # * Code
 if __name__ == '__main__':
@@ -25,8 +25,8 @@ if __name__ == '__main__':
         app.setStyleSheet(f.read())
 
     # Open MainWindow
-    dishCreateWindow = DishCreateWindow()
-    dishCreateWindow.show()
+    butlerView = ButlerView()
+    butlerView.show()
 
     # Exit
     sys.exit(app.exec_())

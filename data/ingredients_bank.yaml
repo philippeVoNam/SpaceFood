@@ -58,3 +58,21 @@
 - calories: 206
   name: fish
   type_: per100g
+- calories: 174
+  name: hard corn shell
+  type_: per100g
+- calories: 332
+  name: ground beef
+  type_: per100g
+- calories: 15
+  name: lettuce
+  type_: per100g
+- calories: 42
+  name: milk
+  type_: per100g
+- calories: 88
+  name: vanilla yogurt
+  type_: per100g
+- calories: 89
+  name: banana
+  type_: per100g

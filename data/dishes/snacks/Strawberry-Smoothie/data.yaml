@@ -1,0 +1,27 @@
+calories: 196.0
+category: snacks
+components:
+- ingredient:
+    calories: 33
+    name: strawberry
+    type_: per100g
+  quantity: 200
+- ingredient:
+    calories: 42
+    name: milk
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 88
+    name: vanilla yogurt
+    type_: per100g
+  quantity: 100
+description: 'Sweet breverage that consists of :
+
+  - strawberry
+
+  - milk
+
+  - vanilla yogurt'
+healthiness: healthy
+name: Strawberry-Smoothie

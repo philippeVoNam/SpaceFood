@@ -12,6 +12,7 @@ from resources.global_file_paths import dishesFolderPath
 from elements.dish import Dish
 from elements.ingredient import Ingredient
 from elements.component import Component
+from resources.global_file_paths import dishesFolderPath
 
 # * Code
 class DishController():
@@ -93,7 +94,7 @@ class DishController():
                 calories = dishData["calories"]
                 healthiness = dishData["healthiness"]
 
-                dishImageFilePath = str(Path(dishesFolderPath) / "dish.jpg")
+                dishImageFilePath = str(Path(dishFolderPath) / "dish.jpg")
 
                 dish = Dish(name, category, description, components, healthiness, dishImageFilePath)
 
@@ -118,3 +119,40 @@ class DishController():
 
         else:
             print(dishFolderPath + " does not exist !")
+
+    def load_all(self):
+        """
+        load all the dishes in and returns a list of dishes
+        """
+        breakfastDishesPath = Path(dishesFolderPath) / "breakfast"
+        lunchDishesPath = Path(dishesFolderPath) / "lunch"
+        dinnerDishesPath = Path(dishesFolderPath) / "dinner"
+        snacksDishesPath = Path(dishesFolderPath) / "snacks"
+
+        breakfastDishesPaths = self.merge_files_path(breakfastDishesPath)
+        lunchDishesPaths = self.merge_files_path(lunchDishesPath)
+        dinnerDishesPaths = self.merge_files_path(dinnerDishesPath)
+        snacksDishesPaths = self.merge_files_path(snacksDishesPath)
+
+        dishes = []
+        for dishesFolder in [breakfastDishesPaths, lunchDishesPaths, dinnerDishesPaths, snacksDishesPaths]:
+            for dishPath in dishesFolder:
+                dish = self.read(dishPath)
+
+                dishes.append(dish)
+
+        return dishes
+
+    def merge_files_path(self, parentDir):
+        """
+        given a dir, merge all the files with the parentDir to create its full path
+        """
+        files = os.listdir(parentDir)
+
+        filePaths = []
+        for file_ in files:
+            filePath = os.path.join(parentDir, file_)
+
+            filePaths.append(filePath)
+
+        return filePaths

@@ -24,6 +24,8 @@ from custom_widgets.grid_widget import GridList
 from custom_widgets.icon_button_widget import IconButton
 from resources.global_file_paths import iconsFolderPath
 from ui.dish_create_view import DishCreateWindow
+from ui.inventory_view import InventoryView
+from tools.food_butler import FoodButler
 
 # * Code
 class ButlerView(QtWidgets.QMainWindow):
@@ -44,6 +46,7 @@ class ButlerView(QtWidgets.QMainWindow):
 
         # setup ui
         self.setup_ui()
+        self.setMinimumSize(700, 900)
 
     def setup_ui(self):
         """
@@ -74,6 +77,9 @@ class ButlerView(QtWidgets.QMainWindow):
         self.fridgeButton = IconButton(iconsFolderPath + "/fridge.png")
         self.basketButton = IconButton(iconsFolderPath + "/basket.png")
         self.recipeButton = IconButton(iconsFolderPath + "/recipe.png")
+
+        self.scanDishesButton.clicked.connect(self.scan_dishes)
+        self.fridgeButton.clicked.connect(self.show_inventory)
         self.recipeButton.clicked.connect(self.show_recipe_book)
 
         self.layout.addWidget(self.categoryComboBox, 0, 1)
@@ -102,9 +108,19 @@ class ButlerView(QtWidgets.QMainWindow):
             else:
                 dishButton.button.show()
 
+    def scan_dishes(self):
+        category = self.categoryComboBox.currentText()
+
+        butler = FoodButler()
+        butler.scan_available_dishes(category)
+
     def show_recipe_book(self):
         self.dishCreateWindow = DishCreateWindow()
         self.dishCreateWindow.show()
+
+    def show_inventory(self):
+        self.inventoryWindow = InventoryView()
+        self.inventoryWindow.show()
 
     def set_red_status(self):
         """

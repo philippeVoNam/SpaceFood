@@ -36,15 +36,20 @@ class InventoryController():
 
             data = component.pickle_it()
 
+            resultFlag = False
             if component.ingredient.name.lower() not in ingredientsNames:
                 loadedData.append(data)
+                resultFlag = True
 
             else:
-                print("ingredient already in")
+                print("component already in")
+                resultFlag = False
 
         if loadedData:
             with open(self.filePath,'w') as yamlfile:
                 yaml.safe_dump(loadedData, yamlfile) # Also note the safe_dump
+
+        return resultFlag
 
     def remove(self, ingredientName):
         """
@@ -81,10 +86,10 @@ class InventoryController():
         ---------
         ingredient : elements.Ingredient
         """
-        # remove the current ingredient
+        # remove the current component
         self.remove(editedComponent.ingredient.name)
 
-        # append the edited ingredient
+        # append the edited component
         self.append(editedComponent)
 
     def load(self):

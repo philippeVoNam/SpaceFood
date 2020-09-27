@@ -125,6 +125,7 @@ class IngredientController():
 
             else:
                 print("ingredient not in bank")
+                return None
 
     def get_names(self):
         """

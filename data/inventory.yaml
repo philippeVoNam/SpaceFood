@@ -9,27 +9,62 @@
     type_: per100g
   quantity: 400
 - ingredient:
-    calories: 518
-    name: pork belly
-    type_: per100g
-  quantity: 500
-- ingredient:
-    calories: 230
-    name: coconut milk
-    type_: per100g
-  quantity: 300
-- ingredient:
     calories: 40
     name: onion
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 85
+    name: wonton noodle
+    type_: per100g
+  quantity: 400
+- ingredient:
+    calories: 52
+    name: apple
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 47
+    name: orange
+    type_: per100g
+  quantity: 200
+- ingredient:
+    calories: 360
+    name: banh xeo batter mix
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 32
+    name: green onion
     type_: per100g
   quantity: 1000
 - ingredient:
     calories: 119
     name: duck
     type_: per100g
-  quantity: 500
+  quantity: 40
 - ingredient:
-    calories: 85
-    name: wonton noodle
+    calories: 518
+    name: pork belly
     type_: per100g
-  quantity: 400
+  quantity: 1000
+- ingredient:
+    calories: 230
+    name: coconut milk
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 33
+    name: strawberry
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 42
+    name: milk
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 88
+    name: vanilla yogurt
+    type_: per100g
+  quantity: 1000

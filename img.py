@@ -20,28 +20,27 @@ class ImgButton(QtWidgets.QWidget):
     def __init__(self, text, imgPath, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        print("a")
-    #     # setup ui
-    #     self.layout = QtWidgets.QVBoxLayout()
+        # setup ui
+        self.layout = QtWidgets.QVBoxLayout()
 
-    #     self.imgLabel = QtWidgets.QLabel()
-    #     pixmap = QtGui.QPixmap(imgPath)
-    #     self.imgLabel.setPixmap(pixmap)
-    #     self.imgLabel.setScaledContents(True)
+        self.imgLabel = QtWidgets.QLabel()
+        pixmap = QtGui.QPixmap(imgPath)
+        self.imgLabel.setPixmap(pixmap)
+        self.imgLabel.setScaledContents(True)
 
-    #     self.imgLabel.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-    #     self.imgLabel.setMaximumSize(200,400)
+        self.imgLabel.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.imgLabel.setMaximumSize(200,400)
 
-    #     self.label = QtWidgets.QLabel(text)
-    #     self.label.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.label = QtWidgets.QLabel(text)
+        self.label.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
 
-    #     self.layout.addWidget(self.imgLabel)
-    #     self.layout.addWidget(self.label)
+        self.layout.addWidget(self.imgLabel)
+        self.layout.addWidget(self.label)
 
-    #     self.setLayout(self.layout)
+        self.setLayout(self.layout)
 
-    # def mousePressEvent(self, env):
-    #     """
-    #     run a function when this widget is clicked
-    #     """
-    #     self.clicked.emit()
+    def mousePressEvent(self, env):
+        """
+        run a function when this widget is clicked
+        """
+        self.clicked.emit()

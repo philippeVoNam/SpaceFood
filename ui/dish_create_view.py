@@ -29,6 +29,7 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         super(DishCreateWindow, self).__init__()
 
         self.setup_ui()
+        self.setMinimumSize(700, 900)
 
         # set the ingredients list
         self.ingredientController = IngredientController(ingredientBankFilePath)
@@ -179,6 +180,8 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         return components
 
     def refresh_ingredients_bank(self):
+        self.ingredientList.list_.clear()
+
         ingredientList = self.ingredientController.get_names()
         self.ingredientList.set_items(ingredientList)
 

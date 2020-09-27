@@ -6,24 +6,30 @@
 # 3rd Party Imports
 from PySide2 import QtWidgets
 from PySide2 import QtGui
+from PySide2 import QtCore
 # User Imports
 from tools.ingredient_controller import IngredientController
-from resources.global_file_paths import ingredientBankFilePath
+from tools.inventory_controller import InventoryController
+from resources.global_file_paths import ingredientBankFilePath, inventoryFilePath
 from elements.ingredient import Ingredient
 from elements.enums import SizeType
+from elements.component import Component
 
 # * Code
-class IngredientAddWidget(QtWidgets.QWidget):
+class InventoryAddWidget(QtWidgets.QWidget):
     """
-    widget to allow the user to add ingredients and save them locally
+    widget to allow the user to add component and save them locally
     """
     def __init__(self):
-        super(IngredientAddWidget, self).__init__()
-
-        self.setup_ui()
+        super(InventoryAddWidget, self).__init__()
 
         # set the ingredients list
         self.ingredientController = IngredientController(ingredientBankFilePath)
+        self.inventoryController = InventoryController(inventoryFilePath)
+        self.ingredientList = self.ingredientController.get_names()
+
+        # setup ui
+        self.setup_ui()
 
     def setup_ui(self):
         """
@@ -36,30 +42,38 @@ class IngredientAddWidget(QtWidgets.QWidget):
         self.ingredientNameLineEdit = QtWidgets.QLineEdit()
         self.ingredientNameLineEdit.setPlaceholderText("Ingredient Name")
 
-        self.caloriesSpinBox = QtWidgets.QSpinBox()
-        self.caloriesSpinBox.setRange(0, 1000)
-        self.caloriesSpinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        # adding the auto complete
+        self.completer = QtWidgets.QCompleter()
+        self.ingredientNameLineEdit.setCompleter(self.completer)
+        self.model = QtCore.QStringListModel()
+        self.completer.setModel(self.model)
+        self.model.setStringList(self.ingredientList)
+        self.completer.setCompletionMode(QtWidgets.QCompleter.InlineCompletion)
 
-        self.caloriesLabel = QtWidgets.QLabel("cal")
+        self.quantitySpinBox = QtWidgets.QSpinBox()
+        self.quantitySpinBox.setRange(0, 1000)
+        self.quantitySpinBox.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
 
-        self.addIngredientButton = QtWidgets.QPushButton("Add")
-        self.addIngredientButton.clicked.connect(self.add_ingredient)
+        self.quantityLabel = QtWidgets.QLabel("grams")
+
+        self.addComponentButton = QtWidgets.QPushButton("Add")
+        self.addComponentButton.clicked.connect(self.add_component)
 
         self.addStatusLabel = QtWidgets.QLabel("status")
 
         self.layout.addWidget(self.ingredientNameLineEdit, 0, 0)
-        self.layout.addWidget(self.caloriesSpinBox, 0, 1)
-        self.layout.addWidget(self.caloriesLabel, 0, 2)
-        self.layout.addWidget(self.addIngredientButton, 0, 3)
+        self.layout.addWidget(self.quantitySpinBox, 0, 1)
+        self.layout.addWidget(self.quantityLabel, 0, 2)
+        self.layout.addWidget(self.addComponentButton, 0, 3)
         self.layout.addWidget(self.addStatusLabel, 1, 0)
 
         # setup style
         style = """
-        QWidget#IngredientAddBox {
+        QWidget#InventoryAddBox {
             background-color: #1C1E26;
         }
         """
-        self.setObjectName("IngredientAddBox")
+        self.setObjectName("InventoryAddBox")
         self.setStyleSheet(style)
 
         style = """
@@ -77,31 +91,39 @@ class IngredientAddWidget(QtWidgets.QWidget):
         # Apply Layout
         self.setLayout(self.layout)
 
-    def add_ingredient(self):
+    def add_component(self):
         """
-        add ingredient to ingredient bank
+        add component to inventory bank
         """
         ingredientName = self.ingredientNameLineEdit.text()
-        caloriesper100 = self.caloriesSpinBox.value()
+        quantity = self.quantitySpinBox.value()
 
-        if not ingredientName or caloriesper100 < 0:
+        if not ingredientName or quantity < 0:
             self.set_red_status()
-            print("invalid ingredient")
-            self.addStatusLabel.setText("invalid ingredient (ó_ò｡)")
+            print("invalid component")
+            self.addStatusLabel.setText("invalid component (ó_ò｡)")
 
         else:
-            ingredient = Ingredient(ingredientName, caloriesper100, SizeType.Per100g.value)
+            ingredient = self.ingredientController.read(ingredientName)
 
-            result = self.ingredientController.append(ingredient)
+            if ingredient != None:
+                component = Component(ingredient, quantity)
 
-            if result:
-                self.set_green_status()
-                print("ingredient added !")
-                self.addStatusLabel.setText("ingredient added o(^▽^)o")
+                result = self.inventoryController.append(component)
+
+                if result:
+                    self.set_green_status()
+                    print("component added !")
+                    self.addStatusLabel.setText("component added o(^▽^)o")
+
+                else:
+                    self.set_yellow_status()
+                    self.addStatusLabel.setText("component already exists (^o^)v")
 
             else:
-                self.set_yellow_status()
-                self.addStatusLabel.setText("ingredient already exists (^o^)v")
+                self.set_red_status()
+                print("invalid component")
+                self.addStatusLabel.setText("invalid component (ó_ò｡)")
 
     def set_red_status(self):
         """

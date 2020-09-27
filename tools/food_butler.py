@@ -53,6 +53,7 @@ class FoodButler():
             dishAvailableFlag = True
             for component in dish.components:
                 if component.ingredient.name not in ingredientsAvailableNames:
+                    print("missing -> ", component.ingredient.name)
                     dishAvailableFlag = False
                     continue
 

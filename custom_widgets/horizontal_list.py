@@ -11,16 +11,16 @@ from PySide2 import QtCore
 # User Imports
 
 # * Code
-class GridList(QtWidgets.QWidget):
+class HorizontalList(QtWidgets.QWidget):
     """
-    grid layout where you can add widgets and have a scroll area
+    horizontal layout where you can add widgets and have a scroll area
     """
-    def __init__(self, colCountMax, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # setup ui
-        self.layout = QtWidgets.QGridLayout()
-        self.widgetsLayout = QtWidgets.QGridLayout()
+        self.layout = QtWidgets.QHBoxLayout()
+        self.widgetsLayout = QtWidgets.QHBoxLayout()
 
         groupBox = QtWidgets.QGroupBox()
         groupBox.setLayout(self.widgetsLayout)
@@ -36,15 +36,7 @@ class GridList(QtWidgets.QWidget):
         self.setLayout(self.layout)
 
         # init
-        self.colCount = 0
-        self.rowCount = 0
-        self.colCountMax = colCountMax
-
         self.widgetBank = {}
-
-    def reset_grid_count(self):
-        self.colCount = 0
-        self.rowCount = 0
 
     def add_widget(self, widget, idName):
         """
@@ -64,16 +56,7 @@ class GridList(QtWidgets.QWidget):
             print("idName : " + idName + " already exists")
        
         else:
-            if self.colCount >= self.colCountMax:
-                self.colCount = 0 # reset col count
-                self.rowCount = self.rowCount + 1
-                self.widgetsLayout.addWidget(widget, self.rowCount, self.colCount)
-
-            else:
-                self.widgetsLayout.addWidget(widget, self.rowCount, self.colCount)
-
-            self.colCount = self.colCount + 1
-
+            self.widgetsLayout.addWidget(widget)
             self.widgetBank[idName] = widget
 
     def widget_in_grid(self, idName):
@@ -113,8 +96,10 @@ class GridList(QtWidgets.QWidget):
         else:
             self.widgetBank[idName].show()
 
-    # def clear_grid(self):
-    #     while self.widgetsLayout.count():
-    #         child = self.widgetsLayout.takeAt(0)
-    #         if child.widget():
-    #             child.widget().deleteLater()
+    def clear(self):
+        # verify if idName  exists
+        keyList = list(self.widgetBank.keys())
+
+        for idName in keyList:
+            self.widgetBank[idName].setParent(None)
+            del self.widgetBank[idName] # remove the button

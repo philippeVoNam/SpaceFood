@@ -68,3 +68,18 @@
     name: vanilla yogurt
     type_: per100g
   quantity: 1000
+- ingredient:
+    calories: 174
+    name: hard corn shell
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 332
+    name: ground beef
+    type_: per100g
+  quantity: 1000
+- ingredient:
+    calories: 15
+    name: lettuce
+    type_: per100g
+  quantity: 0

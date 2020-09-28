@@ -76,3 +76,12 @@
 - calories: 89
   name: banana
   type_: per100g
+- calories: 53
+  name: raspberry
+  type_: per100g
+- calories: 57
+  name: blueberry
+  type_: per100g
+- calories: 0
+  name: salt
+  type_: per100g

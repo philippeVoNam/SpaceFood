@@ -26,6 +26,8 @@ from resources.global_file_paths import iconsFolderPath
 from ui.dish_create_view import DishCreateWindow
 from ui.inventory_view import InventoryView
 from tools.food_butler import FoodButler
+from custom_widgets.line import QHLine, QVLine
+from custom_widgets.horizontal_list import HorizontalList
 
 # * Code
 class ButlerView(QtWidgets.QMainWindow):
@@ -68,10 +70,12 @@ class ButlerView(QtWidgets.QMainWindow):
         for dish in self.dishes:
             button = ImgButton(text = dish.name, imgPath = dish.dishImageFilePath)
             button.clicked.connect(dish.__str__)
-            self.grid.add_widget(button, dish.name)
+            # self.grid.add_widget(button, dish.name)
 
             dishButton = DishButton(dish, button)
             self.dishButtons.append(dishButton)
+
+        self.horizontalList = HorizontalList()
 
         self.scanDishesButton = IconButton(iconsFolderPath + "/food.png")
         self.fridgeButton = IconButton(iconsFolderPath + "/fridge.png")
@@ -84,10 +88,11 @@ class ButlerView(QtWidgets.QMainWindow):
 
         self.layout.addWidget(self.categoryComboBox, 0, 1)
         self.layout.addWidget(self.grid, 1, 1, 4, 1)
-        self.layout.addWidget(self.scanDishesButton, 0, 0)
+        self.layout.addWidget(self.scanDishesButton, 5, 0)
         self.layout.addWidget(self.fridgeButton, 1, 0)
         self.layout.addWidget(self.basketButton, 2, 0)
         self.layout.addWidget(self.recipeButton, 3, 0)
+        self.layout.addWidget(self.horizontalList, 5, 1)
 
         verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.layout.addItem(verticalSpacer, 4, 0)
@@ -101,22 +106,42 @@ class ButlerView(QtWidgets.QMainWindow):
     def update_dish_grid(self):
         category = self.categoryComboBox.currentText()
 
+        self.grid.reset_grid_count() # reset row and col count
+
         for dishButton in self.dishButtons:
             if dishButton.dish.category.lower() != category.lower():
-                dishButton.button.hide()
+
+                if self.grid.widget_in_grid(idName = dishButton.dish.name):
+                    self.grid.remove_widget(idName = dishButton.dish.name)
 
             else:
-                dishButton.button.show()
+                self.grid.add_widget(dishButton.button, dishButton.dish.name)
+
+        # FIXME -> Missing when we add new dishes to the database
 
     def scan_dishes(self):
         category = self.categoryComboBox.currentText()
 
         butler = FoodButler()
-        butler.scan_available_dishes(category)
+        availableDishes = butler.scan_available_dishes(category)
+
+        self.horizontalList.clear()
+
+        for dishButton in self.dishButtons:
+            if dishButton.dish.name.lower() not in availableDishes:
+
+                if self.horizontalList.widget_in_grid(idName = dishButton.dish.name):
+                    self.horizontalList.remove_widget(idName = dishButton.dish.name)
+
+            else:
+                self.horizontalList.add_widget(dishButton.button, dishButton.dish.name)
 
     def show_recipe_book(self):
         self.dishCreateWindow = DishCreateWindow()
         self.dishCreateWindow.show()
+
+        # connect signal
+        self.dishCreateWindow.DISH_CREATED.connect(self.update_dish_grid)
 
     def show_inventory(self):
         self.inventoryWindow = InventoryView()

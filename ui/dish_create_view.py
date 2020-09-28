@@ -6,6 +6,7 @@
 # 3rd Party Imports
 from PySide2 import QtWidgets
 from PySide2 import QtGui
+from PySide2 import QtCore
 # User Imports
 from elements.dish import Dish
 from elements.enums import DishCategories, Healthiness
@@ -25,6 +26,8 @@ class DishCreateWindow(QtWidgets.QMainWindow):
     """
     window to allow the user to create dishes and save them locally
     """
+    DISH_CREATED = QtCore.Signal()
+   
     def __init__(self):
         super(DishCreateWindow, self).__init__()
 
@@ -101,9 +104,6 @@ class DishCreateWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(QtWidgets.QWidget(self))
         self.centralWidget().setLayout(self.layout)
 
-    def hi(self):
-        print("hi")
-
     def ingredient_clicked(self, item):
         """
         insert ingredient into component text box
@@ -147,6 +147,8 @@ class DishCreateWindow(QtWidgets.QMainWindow):
                 self.set_green_status()
                 print("dish added")
                 self.statusBar.showMessage("dish added o(^▽^)o", 10000)
+
+                self.DISH_CREATED.emit()
 
             else:
                 self.set_yellow_status()

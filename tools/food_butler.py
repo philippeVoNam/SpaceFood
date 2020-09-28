@@ -68,5 +68,10 @@ class FoodButler():
             if dishAvailableFlag:
                 availableDishes.append(dish)
 
+        availableDishesNames = []
         for dish in availableDishes:
             print(dish.name)
+            availableDishesNames.append(dish.name.lower())
+
+
+        return availableDishesNames

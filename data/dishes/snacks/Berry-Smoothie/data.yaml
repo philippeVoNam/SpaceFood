@@ -1,0 +1,31 @@
+calories: 218.0
+category: snacks
+components:
+- ingredient:
+    calories: 53
+    name: raspberry
+    type_: per100g
+  quantity: 50
+- ingredient:
+    calories: 57
+    name: blueberry
+    type_: per100g
+  quantity: 50
+- ingredient:
+    calories: 33
+    name: strawberry
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 88
+    name: vanilla yogurt
+    type_: per100g
+  quantity: 100
+- ingredient:
+    calories: 42
+    name: milk
+    type_: per100g
+  quantity: 100
+description: Berry smoothie is a beverage consisting of berries :)
+healthiness: healthy
+name: Berry-Smoothie

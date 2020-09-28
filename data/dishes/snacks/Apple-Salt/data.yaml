@@ -1,0 +1,16 @@
+calories: 52.0
+category: snacks
+components:
+- ingredient:
+    calories: 0
+    name: salt
+    type_: per100g
+  quantity: 20
+- ingredient:
+    calories: 52
+    name: apple
+    type_: per100g
+  quantity: 100
+description: Apple and xi muoi salt, mouth watering :P
+healthiness: healthy
+name: Apple-Salt
